@@ -194,4 +194,103 @@ document.addEventListener("mousemove", (e) => {
     document.body.appendChild(glow);
 
     setTimeout(() => glow.remove(), 300);
+
+    
+});
+// ===============================
+// 🧠 QUIZ DE FÍSICA INTERACTIVO
+// ===============================
+function initQuiz() {
+    const quizContainer = document.createElement("div");
+    quizContainer.style.position = "fixed";
+    quizContainer.style.left = "20px";
+    quizContainer.style.bottom = "20px";
+    quizContainer.style.width = "300px";
+    quizContainer.style.background = "rgba(0,0,0,0.85)";
+    quizContainer.style.padding = "20px";
+    quizContainer.style.borderRadius = "15px";
+    quizContainer.style.zIndex = "999";
+
+    document.body.appendChild(quizContainer);
+
+    const questions = [
+        {
+            q: "¿Cuál es la fórmula de la energía cinética?",
+            options: ["E = mc²", "Ec = ½mv²", "F = ma"],
+            correct: 1
+        },
+        {
+            q: "¿Qué magnitud mide el Newton?",
+            options: ["Energía", "Fuerza", "Velocidad"],
+            correct: 1
+        },
+        {
+            q: "¿Quién formuló la relatividad?",
+            options: ["Newton", "Einstein", "Tesla"],
+            correct: 1
+        }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function loadQuestion() {
+        const q = questions[current];
+
+        quizContainer.innerHTML = `
+            <h4>Quiz de Física</h4>
+            <p>${q.q}</p>
+            ${q.options.map((opt, i) => `
+                <button class="quiz-btn" data-index="${i}" style="display:block; margin:5px 0; width:100%;">
+                    ${opt}
+                </button>
+            `).join("")}
+            <p id="feedback"></p>
+        `;
+
+        document.querySelectorAll(".quiz-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const selected = parseInt(btn.dataset.index);
+
+                if (selected === q.correct) {
+                    score++;
+                    document.getElementById("feedback").innerText = "✅ Correcto";
+                } else {
+                    document.getElementById("feedback").innerText = "❌ Incorrecto";
+                }
+
+                setTimeout(() => {
+                    current++;
+                    if (current < questions.length) {
+                        loadQuestion();
+                    } else {
+                        showResult();
+                    }
+                }, 1000);
+            });
+        });
+    }
+
+    function showResult() {
+        quizContainer.innerHTML = `
+            <h4>Resultado</h4>
+            <p>Puntuación: ${score}/${questions.length}</p>
+            <button id="restartQuiz">Reintentar</button>
+        `;
+
+        document.getElementById("restartQuiz").addEventListener("click", () => {
+            current = 0;
+            score = 0;
+            loadQuestion();
+        });
+    }
+
+    loadQuestion();
+}
+
+// ===============================
+// 🚀 INICIALIZAR QUIZ
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+    initQuiz();
 });
