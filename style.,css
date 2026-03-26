@@ -1,75 +1,236 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #0f172a;
-  color: white;
+/* ===============================
+   🌌 RESET GLOBAL
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* ===============================
+   🎨 VARIABLES (DISEÑO PRO)
+================================ */
+:root {
+    --primary: #00e5ff;
+    --secondary: #0f2027;
+    --glass: rgba(255, 255, 255, 0.08);
+    --text: #ffffff;
+    --shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* ===============================
+   🌍 BODY
+================================ */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* ===============================
+   🔝 HEADER
+================================ */
 header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  background: #020617;
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+header h1 {
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, #00e5ff, #00bcd4);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+header p {
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* ===============================
+   🧭 NAVBAR
+================================ */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav a {
-  color: #38bdf8;
-  margin-left: 20px;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
 }
 
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(135deg, #1e3a8a, #0ea5e9);
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: var(--primary);
+    transition: 0.3s;
 }
 
-.hero h2 {
-  font-size: 2.5rem;
+nav a:hover::after {
+    width: 100%;
 }
 
-button {
-  padding: 10px 20px;
-  border: none;
-  background: white;
-  color: black;
-  cursor: pointer;
-  margin-top: 20px;
+/* ===============================
+   📦 SECCIONES
+================================ */
+section {
+    padding: 80px 10%;
 }
 
-.cards {
-  padding: 50px;
-  text-align: center;
+h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    border-left: 5px solid var(--primary);
+    padding-left: 15px;
 }
 
+/* ===============================
+   🧱 GRID
+================================ */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
 }
 
+/* ===============================
+   💎 CARDS
+================================ */
 .card {
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 10px;
-  transition: 0.3s;
+    background: var(--glass);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(15px);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: linear-gradient(45deg, transparent, rgba(0,229,255,0.2), transparent);
+    transform: rotate(45deg);
+    top: -100%;
+    left: -100%;
+    transition: 0.6s;
+}
+
+.card:hover::before {
+    top: 100%;
+    left: 100%;
 }
 
 .card:hover {
-  transform: scale(1.05);
-  background: #334155;
+    transform: translateY(-10px) scale(1.03);
 }
 
-.formula {
-  background: #020617;
-  margin: 10px auto;
-  padding: 15px;
-  width: fit-content;
-  border-radius: 8px;
+/* ===============================
+   🔘 BOTONES
+================================ */
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 25px;
+    background: linear-gradient(90deg, #00e5ff, #00bcd4);
+    color: black;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
+.btn:hover {
+    transform: scale(1.1);
+}
+
+/* ===============================
+   📊 FOOTER
+================================ */
 footer {
-  text-align: center;
-  padding: 20px;
-  background: #020617;
+    text-align: center;
+    padding: 30px;
+    background: rgba(0,0,0,0.7);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ===============================
+   ✨ ANIMACIONES
+================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    animation: fadeIn 1s ease;
+}
+
+/* ===============================
+   📱 RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    section {
+        padding: 50px 5%;
+    }
+}
+
+/* ===============================
+   🌟 EFECTO SCROLLBAR
+================================ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+/* ===============================
+   💡 EFECTO GLOW GLOBAL
+================================ */
+h1, h2 {
+    text-shadow: 0 0 10px rgba(0,229,255,0.5);
 }
