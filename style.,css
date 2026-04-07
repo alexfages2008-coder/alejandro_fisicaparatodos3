@@ -3,131 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Física 2º Bachillerato</title>
+<title>Física Pro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 
 /* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 /* VARIABLES */
-:root {
-    --primary: #00e5ff;
-    --primary-dark: #00bcd4;
-    --bg-1: #0f2027;
-    --bg-2: #203a43;
-    --bg-3: #2c5364;
-
-    --glass: rgba(255,255,255,0.06);
-    --border: rgba(255,255,255,0.15);
-
-    --text: #ffffff;
-    --text-muted: rgba(255,255,255,0.7);
-
-    --shadow-soft: 0 8px 25px rgba(0,0,0,0.3);
-    --shadow-strong: 0 15px 50px rgba(0,0,0,0.6);
-
-    --radius: 20px;
-    --transition: 0.35s cubic-bezier(.2,.8,.2,1);
+:root{
+--primary:#00e5ff;
+--bg:#0a0f1c;
+--card:#111827;
+--text:#fff;
+--muted:#9ca3af;
 }
 
 /* BODY */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
-    color: var(--text);
+body{
+font-family:'Poppins',sans-serif;
+background: radial-gradient(circle at top, #0f2027, #020617);
+color:var(--text);
+overflow-x:hidden;
 }
 
-/* HEADER */
-header {
-    text-align: center;
-    padding: 80px 20px;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(20px);
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
 }
 
-header h1 {
-    font-size: 3rem;
-    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-    -webkit-background-clip: text;
-    color: transparent;
+.hero h1{
+font-size:4rem;
+background:linear-gradient(90deg,#00e5ff,#00bcd4);
+-webkit-background-clip:text;
+color:transparent;
+animation: glow 2s infinite alternate;
 }
 
-header p {
-    margin-top: 15px;
-    color: var(--text-muted);
+.hero p{
+margin-top:20px;
+color:var(--muted);
+font-size:1.2rem;
+}
+
+@keyframes glow{
+from{filter:drop-shadow(0 0 10px #00e5ff);}
+to{filter:drop-shadow(0 0 25px #00e5ff);}
+}
+
+/* BOTÓN */
+.btn{
+margin-top:30px;
+padding:12px 25px;
+background:linear-gradient(90deg,#00e5ff,#00bcd4);
+border:none;
+border-radius:30px;
+color:#000;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px #00e5ff;
 }
 
 /* NAV */
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 15px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(15px);
-    position: sticky;
-    top: 0;
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+gap:30px;
+padding:15px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+z-index:100;
 }
 
-nav a {
-    color: var(--text-muted);
-    text-decoration: none;
-    position: relative;
+nav a{
+color:var(--muted);
+text-decoration:none;
 }
 
-nav a:hover {
-    color: var(--primary);
+nav a:hover{
+color:var(--primary);
 }
 
 /* SECCIONES */
-section {
-    padding: 60px 10%;
-}
-
-/* TITULOS */
-h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-}
-
-h3 {
-    color: var(--primary);
-    margin-bottom: 10px;
+section{
+padding:100px 10%;
 }
 
 /* GRID */
-.cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
 }
 
 /* CARDS */
-.card {
-    background: var(--glass);
-    padding: 25px;
-    border-radius: var(--radius);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    transition: var(--transition);
+.card{
+background:var(--card);
+padding:25px;
+border-radius:15px;
+transition:0.4s;
+position:relative;
+overflow:hidden;
 }
 
-.card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: var(--shadow-strong);
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(120deg,transparent,#00e5ff,transparent);
+opacity:0;
+transition:0.4s;
+}
+
+.card:hover::before{
+opacity:0.2;
+}
+
+.card:hover{
+transform:translateY(-15px) scale(1.05);
+box-shadow:0 0 30px rgba(0,229,255,0.3);
+}
+
+.card h3{
+color:var(--primary);
+margin-bottom:10px;
 }
 
 /* FOOTER */
-footer {
-    text-align: center;
-    padding: 30px;
-    background: rgba(0,0,0,0.6);
-    color: var(--text-muted);
+footer{
+text-align:center;
+padding:40px;
+color:var(--muted);
+}
+
+/* PARTÍCULAS */
+body::after{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:url('https://www.transparenttextures.com/patterns/stardust.png');
+opacity:0.1;
+z-index:-1;
 }
 
 </style>
@@ -135,80 +168,54 @@ footer {
 
 <body>
 
-<header>
-    <h1>Física 2º Bachillerato</h1>
-    <p>Domina la física como un profesional 🚀</p>
-</header>
-
 <nav>
-    <a href="#cinematica">Cinemática</a>
-    <a href="#dinamica">Dinámica</a>
-    <a href="#energia">Energía</a>
+<a href="#cinematica">Cinemática</a>
+<a href="#dinamica">Dinámica</a>
+<a href="#energia">Energía</a>
 </nav>
 
+<div class="hero">
+<h1>Física 2º Bach</h1>
+<p>Domina la física como un profesional 🚀</p>
+<button class="btn" onclick="scrollToSection()">Empezar</button>
+</div>
+
 <section id="cinematica">
-    <h2>Cinemática</h2>
-    <div class="cards-container">
-        <div class="card">
-            <h3>Movimiento Rectilíneo</h3>
-            <p>MRU y MRUA. v = d/t</p>
-        </div>
-
-        <div class="card">
-            <h3>Movimiento Parabólico</h3>
-            <p>Movimiento en 2D bajo gravedad.</p>
-        </div>
-
-        <div class="card">
-            <h3>Movimiento Circular</h3>
-            <p>Aceleración centrípeta: a = v²/r</p>
-        </div>
-    </div>
+<h2>Cinemática</h2>
+<div class="grid">
+<div class="card"><h3>MRU/MRUA</h3><p>v = d/t</p></div>
+<div class="card"><h3>Parabólico</h3><p>Movimiento en 2D</p></div>
+<div class="card"><h3>Circular</h3><p>a = v²/r</p></div>
+</div>
 </section>
 
 <section id="dinamica">
-    <h2>Dinámica</h2>
-    <div class="cards-container">
-        <div class="card">
-            <h3>Leyes de Newton</h3>
-            <p>Las 3 leyes fundamentales del movimiento.</p>
-        </div>
-
-        <div class="card">
-            <h3>Fuerzas</h3>
-            <p>Gravedad, rozamiento, tensión y normal.</p>
-        </div>
-
-        <div class="card">
-            <h3>Aplicaciones</h3>
-            <p>Resolución de problemas reales.</p>
-        </div>
-    </div>
+<h2>Dinámica</h2>
+<div class="grid">
+<div class="card"><h3>Leyes de Newton</h3></div>
+<div class="card"><h3>Fuerzas</h3></div>
+<div class="card"><h3>Aplicaciones</h3></div>
+</div>
 </section>
 
 <section id="energia">
-    <h2>Energía y Trabajo</h2>
-    <div class="cards-container">
-        <div class="card">
-            <h3>Energía Cinética</h3>
-            <p>Ec = ½mv²</p>
-        </div>
-
-        <div class="card">
-            <h3>Energía Potencial</h3>
-            <p>Energía almacenada por posición.</p>
-        </div>
-
-        <div class="card">
-            <h3>Trabajo</h3>
-            <p>Relación entre fuerza y desplazamiento.</p>
-        </div>
-    </div>
+<h2>Energía</h2>
+<div class="grid">
+<div class="card"><h3>Energía Cinética</h3><p>½mv²</p></div>
+<div class="card"><h3>Potencial</h3></div>
+<div class="card"><h3>Trabajo</h3></div>
+</div>
 </section>
 
 <footer>
-    <p>© 2026 Física Pro | Hecho por Alejandro</p>
+<p>© Física Pro</p>
 </footer>
+
+<script>
+function scrollToSection(){
+document.getElementById("cinematica").scrollIntoView({behavior:"smooth"});
+}
+</script>
 
 </body>
 </html>
