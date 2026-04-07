@@ -1,215 +1,268 @@
 // ===============================
-// 🚀 INICIO GLOBAL
+// 🚀 APP INIT
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
-    initScrollAnimations();
-    initSmoothScroll();
-    initTheme();
-    initParticles();
-    initPhysicsCalculator();
-    initQuiz(); // NUEVO
+    App.init();
 });
 
-// ===============================
-// 🌊 ANIMACIONES
-// ===============================
-function initScrollAnimations() {
-    const elements = document.querySelectorAll(".card");
+const App = {
+    init() {
+        this.cacheDOM();
+        this.initScrollAnimations();
+        this.initSmoothScroll();
+        this.initTheme();
+        this.initParticles();
+        this.initPhysicsCalculator();
+        this.initQuiz();
+    },
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = "translateY(0)";
-            }
-        });
-    });
-
-    elements.forEach(el => {
-        el.style.opacity = 0;
-        el.style.transform = "translateY(50px)";
-        el.style.transition = "0.6s";
-        observer.observe(el);
-    });
-}
+    cacheDOM() {
+        this.body = document.body;
+    },
 
 // ===============================
-// 🧭 SCROLL SUAVE
+// 🌊 SCROLL ANIMATIONS (MEJORADO)
 // ===============================
-function initSmoothScroll() {
-    document.querySelectorAll("nav a").forEach(anchor => {
-        anchor.addEventListener("click", function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute("href"))
-                .scrollIntoView({ behavior: "smooth" });
-        });
-    });
-}
+    initScrollAnimations() {
+        const elements = document.querySelectorAll(".card");
 
-// ===============================
-// 🌗 MODO OSCURO
-// ===============================
-function initTheme() {
-    const toggle = document.createElement("button");
-    toggle.innerText = "🌙";
-    toggle.className = "theme-toggle";
-    document.body.appendChild(toggle);
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
 
-    let darkMode = true;
-
-    toggle.onclick = () => {
-        darkMode = !darkMode;
-
-        document.body.classList.toggle("light-mode");
-
-        toggle.innerText = darkMode ? "🌙" : "☀️";
-    };
-}
-
-// ===============================
-// ✨ PARTÍCULAS
-// ===============================
-function initParticles() {
-    const canvas = document.createElement("canvas");
-    document.body.appendChild(canvas);
-
-    const ctx = canvas.getContext("2d");
-
-    function resize() {
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
-    }
-
-    resize();
-    window.addEventListener("resize", resize);
-
-    let particles = Array.from({ length: 80 }, () => ({
-        x: Math.random() * innerWidth,
-        y: Math.random() * innerHeight,
-        dx: Math.random() - 0.5,
-        dy: Math.random() - 0.5
-    }));
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        particles.forEach(p => {
-            p.x += p.dx;
-            p.y += p.dy;
-
-            ctx.fillStyle = "#00e5ff";
-            ctx.fillRect(p.x, p.y, 2, 2);
+                entry.target.classList.add("show");
+                obs.unobserve(entry.target); // 🔥 mejora rendimiento
+            });
+        }, {
+            threshold: 0.2
         });
 
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-}
-
-// ===============================
-// 🧮 CALCULADORA
-// ===============================
-function initPhysicsCalculator() {
-    const box = document.createElement("div");
-    box.className = "calculator";
-
-    box.innerHTML = `
-        <h4>Calculadora</h4>
-        <input id="m" placeholder="Masa">
-        <input id="v" placeholder="Velocidad">
-        <button id="calc">Calcular</button>
-        <p id="res"></p>
-    `;
-
-    document.body.appendChild(box);
-
-    document.getElementById("calc").onclick = () => {
-        let m = parseFloat(document.getElementById("m").value);
-        let v = parseFloat(document.getElementById("v").value);
-
-        if (!m || !v) {
-            res.innerText = "Datos inválidos";
-            return;
-        }
-
-        res.innerText = "E = " + (0.5 * m * v * v).toFixed(2) + " J";
-    };
-}
+        elements.forEach(el => {
+            el.classList.add("hidden");
+            observer.observe(el);
+        });
+    },
 
 // ===============================
-// 🧠 QUIZ INTERACTIVO (PRO)
+// 🧭 SCROLL SUAVE PRO
 // ===============================
-function initQuiz() {
-    const container = document.getElementById("quiz-container");
+    initSmoothScroll() {
+        document.querySelectorAll("nav a").forEach(anchor => {
+            anchor.addEventListener("click", e => {
+                e.preventDefault();
 
-    const questions = [
-        {
-            q: "¿Fórmula de energía cinética?",
-            options: ["E=mc²", "½mv²", "F=ma"],
-            correct: 1
-        },
-        {
-            q: "Unidad de fuerza:",
-            options: ["Joule", "Newton", "Watt"],
-            correct: 1
-        },
-        {
-            q: "Autor de la relatividad:",
-            options: ["Newton", "Einstein", "Galileo"],
-            correct: 1
-        }
-    ];
+                const target = document.querySelector(anchor.getAttribute("href"));
 
-    let i = 0;
-    let score = 0;
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            });
+        });
+    },
 
-    function load() {
-        let q = questions[i];
+// ===============================
+// 🌗 THEME PRO (CON MEMORIA)
+// ===============================
+    initTheme() {
+        const toggle = document.createElement("button");
+        toggle.className = "theme-toggle";
+        document.body.appendChild(toggle);
 
-        container.innerHTML = `
-            <div class="quiz-box">
-                <h3>${q.q}</h3>
-                ${q.options.map((o, idx) =>
-                    `<button class="quiz-btn" data-i="${idx}">${o}</button>`
-                ).join("")}
-                <p id="feedback"></p>
-            </div>
-        `;
+        let darkMode = localStorage.getItem("theme") !== "light";
 
-        document.querySelectorAll(".quiz-btn").forEach(btn => {
-            btn.onclick = () => {
-                let ans = parseInt(btn.dataset.i);
+        const updateUI = () => {
+            document.body.classList.toggle("light-mode", !darkMode);
+            toggle.textContent = darkMode ? "🌙" : "☀️";
+        };
 
-                if (ans === q.correct) {
-                    score++;
-                    feedback.innerText = "✅ Correcto";
-                } else {
-                    feedback.innerText = "❌ Incorrecto";
+        updateUI();
+
+        toggle.addEventListener("click", () => {
+            darkMode = !darkMode;
+            localStorage.setItem("theme", darkMode ? "dark" : "light");
+            updateUI();
+        });
+    },
+
+// ===============================
+// ✨ PARTÍCULAS PRO (INTERACTIVAS)
+// ===============================
+    initParticles() {
+        const canvas = document.createElement("canvas");
+        canvas.className = "particles";
+        document.body.appendChild(canvas);
+
+        const ctx = canvas.getContext("2d");
+
+        let mouse = { x: null, y: null };
+
+        window.addEventListener("mousemove", e => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        const resize = () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+        };
+
+        resize();
+        window.addEventListener("resize", resize);
+
+        const particles = Array.from({ length: 100 }, () => ({
+            x: Math.random() * innerWidth,
+            y: Math.random() * innerHeight,
+            dx: (Math.random() - 0.5) * 1.5,
+            dy: (Math.random() - 0.5) * 1.5
+        }));
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.x += p.dx;
+                p.y += p.dy;
+
+                // rebote
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+                // interacción mouse
+                if (mouse.x && Math.hypot(p.x - mouse.x, p.y - mouse.y) < 100) {
+                    p.x += (p.x - mouse.x) * 0.02;
+                    p.y += (p.y - mouse.y) * 0.02;
                 }
 
-                setTimeout(() => {
-                    i++;
-                    i < questions.length ? load() : result();
-                }, 800);
-            };
-        });
-    }
+                ctx.fillStyle = "#00e5ff";
+                ctx.fillRect(p.x, p.y, 2, 2);
+            });
 
-    function result() {
-        container.innerHTML = `
-            <div class="quiz-box">
-                <h3>Puntuación: ${score}/${questions.length}</h3>
-                <button id="retry">Reintentar</button>
-            </div>
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    },
+
+// ===============================
+// 🧮 CALCULADORA PRO
+// ===============================
+    initPhysicsCalculator() {
+        const box = document.createElement("div");
+        box.className = "calculator";
+
+        box.innerHTML = `
+            <h4>⚡ Energía Cinética</h4>
+            <input id="m" type="number" placeholder="Masa (kg)">
+            <input id="v" type="number" placeholder="Velocidad (m/s)">
+            <button id="calc">Calcular</button>
+            <p id="res"></p>
         `;
 
-        document.getElementById("retry").onclick = () => {
-            i = 0;
-            score = 0;
-            load();
-        };
-    }
+        document.body.appendChild(box);
 
-    load();
-}
+        const mInput = box.querySelector("#m");
+        const vInput = box.querySelector("#v");
+        const res = box.querySelector("#res");
+
+        box.querySelector("#calc").addEventListener("click", () => {
+            const m = parseFloat(mInput.value);
+            const v = parseFloat(vInput.value);
+
+            if (isNaN(m) || isNaN(v) || m <= 0 || v <= 0) {
+                res.textContent = "❌ Introduce valores válidos";
+                res.style.color = "red";
+                return;
+            }
+
+            const energy = 0.5 * m * v ** 2;
+
+            res.textContent = `⚡ ${energy.toFixed(2)} Joules`;
+            res.style.color = "#00e5ff";
+        });
+    },
+
+// ===============================
+// 🧠 QUIZ PRO MAX
+// ===============================
+    initQuiz() {
+        const container = document.getElementById("quiz-container");
+        if (!container) return;
+
+        const questions = [
+            {
+                q: "¿Fórmula de energía cinética?",
+                options: ["E=mc²", "½mv²", "F=ma"],
+                correct: 1
+            },
+            {
+                q: "Unidad de fuerza:",
+                options: ["Joule", "Newton", "Watt"],
+                correct: 1
+            },
+            {
+                q: "Autor de la relatividad:",
+                options: ["Newton", "Einstein", "Galileo"],
+                correct: 1
+            }
+        ];
+
+        let i = 0;
+        let score = 0;
+
+        const render = () => {
+            const q = questions[i];
+
+            container.innerHTML = `
+                <div class="quiz-box fade">
+                    <h3>${q.q}</h3>
+                    <div class="quiz-options">
+                        ${q.options.map((o, idx) =>
+                            `<button class="quiz-btn" data-i="${idx}">${o}</button>`
+                        ).join("")}
+                    </div>
+                    <div class="progress">${i + 1}/${questions.length}</div>
+                </div>
+            `;
+
+            container.querySelectorAll(".quiz-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const ans = +btn.dataset.i;
+
+                    btn.classList.add(ans === q.correct ? "correct" : "wrong");
+
+                    if (ans === q.correct) score++;
+
+                    setTimeout(() => {
+                        i++;
+                        i < questions.length ? render() : showResult();
+                    }, 700);
+                });
+            });
+        };
+
+        const showResult = () => {
+            container.innerHTML = `
+                <div class="quiz-box">
+                    <h2>🏆 ${score}/${questions.length}</h2>
+                    <p>${getMessage(score)}</p>
+                    <button id="retry">Reintentar</button>
+                </div>
+            `;
+
+            container.querySelector("#retry").onclick = () => {
+                i = 0;
+                score = 0;
+                render();
+            };
+        };
+
+        const getMessage = score => {
+            if (score === 3) return "💯 Perfecto!";
+            if (score === 2) return "🔥 Muy bien!";
+            return "💡 Sigue aprendiendo!";
+        };
+
+        render();
+    }
+};
