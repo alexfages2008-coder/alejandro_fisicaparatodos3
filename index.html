@@ -38,17 +38,14 @@
     <a href="#electromagnetismo">Electromagnetismo</a>
     <a href="#cuantica">Cuántica</a>
     <a href="#quiz">Quiz</a>
+    <a href="#chatbot">Chatbot</a>
 </nav>
 
 <main>
 
-<!-- ===============================
-     📍 SECCIÓN TEMPLATE
-================================ -->
 <section id="cinematica">
     <h2>Cinemática</h2>
     <div class="grid">
-
         <article class="card">
             <h3>Movimiento Rectilíneo</h3>
             <p>Estudio del movimiento en línea recta: MRU y MRUA.</p>
@@ -66,14 +63,12 @@
             <p>Movimiento con aceleración centrípeta.</p>
             <span class="formula">a = v²/r</span>
         </article>
-
     </div>
 </section>
 
 <section id="dinamica">
     <h2>Dinámica</h2>
     <div class="grid">
-
         <article class="card">
             <h3>Leyes de Newton</h3>
             <p>Las 3 leyes fundamentales del movimiento.</p>
@@ -88,14 +83,12 @@
             <h3>Aplicaciones</h3>
             <p>Resolución de problemas reales.</p>
         </article>
-
     </div>
 </section>
 
 <section id="energia">
     <h2>Energía y Trabajo</h2>
     <div class="grid">
-
         <article class="card">
             <h3>Energía Cinética</h3>
             <span class="formula">Ec = ½mv²</span>
@@ -110,14 +103,12 @@
             <h3>Conservación</h3>
             <p>La energía total permanece constante.</p>
         </article>
-
     </div>
 </section>
 
 <section id="electromagnetismo">
     <h2>Electromagnetismo</h2>
     <div class="grid">
-
         <article class="card">
             <h3>Campo Eléctrico</h3>
             <span class="formula">E = F/q</span>
@@ -132,14 +123,12 @@
             <h3>Magnetismo</h3>
             <p>Campos magnéticos y fuerzas sobre cargas.</p>
         </article>
-
     </div>
 </section>
 
 <section id="cuantica">
     <h2>Física Cuántica</h2>
     <div class="grid">
-
         <article class="card">
             <h3>Efecto Fotoeléctrico</h3>
             <p>La luz puede comportarse como partícula.</p>
@@ -154,7 +143,6 @@
             <h3>Principio de Incertidumbre</h3>
             <p>No se pueden conocer posición y velocidad a la vez.</p>
         </article>
-
     </div>
 </section>
 
@@ -164,6 +152,20 @@
 <section id="quiz">
     <h2>Quiz Interactivo</h2>
     <div id="quiz-container"></div>
+</section>
+
+<!-- ===============================
+     🤖 CHATBOT
+================================ -->
+<section id="chatbot">
+    <h2>Chatbot de Física 🤖</h2>
+
+    <div class="chat-container">
+        <div id="chatbox"></div>
+
+        <input type="text" id="userInput" placeholder="Haz una pregunta de física...">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
 </section>
 
 </main>
@@ -176,9 +178,52 @@
 </footer>
 
 <!-- ===============================
-     ⚡ JS
+     ⚡ JS CHATBOT
 ================================ -->
-<script src="script.js" defer></script>
+<script>
+function sendMessage() {
+    let input = document.getElementById("userInput").value;
+    let chatbox = document.getElementById("chatbox");
+
+    if (input.trim() === "") return;
+
+    chatbox.innerHTML += `<p class="user">Tú: ${input}</p>`;
+
+    let response = getBotResponse(input.toLowerCase());
+
+    setTimeout(() => {
+        chatbox.innerHTML += `<p class="bot">Bot: ${response}</p>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }, 500);
+
+    document.getElementById("userInput").value = "";
+}
+
+function getBotResponse(input) {
+
+    if (input.includes("velocidad")) {
+        return "La velocidad es el cambio de posición respecto al tiempo (v = d/t).";
+    }
+
+    if (input.includes("aceleración") || input.includes("aceleracion")) {
+        return "La aceleración es el cambio de velocidad en el tiempo (a = Δv/t).";
+    }
+
+    if (input.includes("newton")) {
+        return "Segunda ley de Newton: F = m · a.";
+    }
+
+    if (input.includes("energia") || input.includes("energía")) {
+        return "La energía es la capacidad de realizar trabajo.";
+    }
+
+    if (input.includes("ohm")) {
+        return "Ley de Ohm: V = I · R.";
+    }
+
+    return "No estoy seguro. Prueba con velocidad, energía, fuerzas o electricidad.";
+}
+</script>
 
 </body>
 </html>
