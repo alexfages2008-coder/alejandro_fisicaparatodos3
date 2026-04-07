@@ -3,232 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Física 2º Bachillerato - Portal Profesional</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Física 2º Bachillerato | Plataforma PRO</title>
+<meta name="description" content="Aprende Física de 2º de Bachillerato con una plataforma interactiva, moderna y profesional.">
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    body {
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-        color: white;
-    }
+<!-- CSS -->
+<link rel="stylesheet" href="styles.css">
 
-    header {
-        text-align: center;
-        padding: 40px;
-        background: rgba(0,0,0,0.6);
-        backdrop-filter: blur(10px);
-    }
-
-    header h1 {
-        font-size: 3rem;
-        letter-spacing: 2px;
-    }
-
-    nav {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        background: rgba(255,255,255,0.05);
-        padding: 15px;
-    }
-
-    nav a {
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        transition: 0.3s;
-    }
-
-    nav a:hover {
-        color: #00e5ff;
-    }
-
-    section {
-        padding: 60px 10%;
-    }
-
-    h2 {
-        margin-bottom: 20px;
-        border-left: 5px solid #00e5ff;
-        padding-left: 10px;
-    }
-
-    .card {
-        background: rgba(255,255,255,0.05);
-        padding: 20px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        transition: 0.3s;
-    }
-
-    .card:hover {
-        transform: translateY(-5px) scale(1.02);
-        background: rgba(255,255,255,0.1);
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-    }
-
-    footer {
-        text-align: center;
-        padding: 30px;
-        background: rgba(0,0,0,0.7);
-    }
-
-    .btn {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 10px 20px;
-        background: #00e5ff;
-        color: black;
-        border-radius: 25px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .btn:hover {
-        background: #00bcd4;
-    }
-</style>
 </head>
 
 <body>
 
-<header>
-    <h1>FÍSICA 2º BACHILLERATO</h1>
-    <p>La guía definitiva para dominar la física como un profesional</p>
+<!-- ===============================
+     🚀 HEADER HERO
+================================ -->
+<header class="hero">
+    <div class="hero-content">
+        <h1>Física 2º Bachillerato</h1>
+        <p>Domina la física como un profesional 🚀</p>
+        <a href="#cinematica" class="btn">Empezar</a>
+    </div>
 </header>
 
-<nav>
+<!-- ===============================
+     🧭 NAVBAR PRO
+================================ -->
+<nav class="navbar">
     <a href="#cinematica">Cinemática</a>
     <a href="#dinamica">Dinámica</a>
     <a href="#energia">Energía</a>
     <a href="#electromagnetismo">Electromagnetismo</a>
     <a href="#cuantica">Cuántica</a>
+    <a href="#quiz">Quiz</a>
 </nav>
 
+<main>
+
+<!-- ===============================
+     📍 SECCIÓN TEMPLATE
+================================ -->
 <section id="cinematica">
     <h2>Cinemática</h2>
     <div class="grid">
-        <div class="card">
+
+        <article class="card">
             <h3>Movimiento Rectilíneo</h3>
             <p>Estudio del movimiento en línea recta: MRU y MRUA.</p>
-            <p><strong>Fórmula:</strong> v = d/t</p>
-        </div>
+            <span class="formula">v = d/t</span>
+        </article>
 
-        <div class="card">
+        <article class="card">
             <h3>Movimiento Parabólico</h3>
             <p>Movimiento en dos dimensiones bajo gravedad.</p>
-            <p><strong>Clave:</strong> Independencia de ejes</p>
-        </div>
+            <span class="formula">Independencia de ejes</span>
+        </article>
 
-        <div class="card">
+        <article class="card">
             <h3>Movimiento Circular</h3>
             <p>Movimiento con aceleración centrípeta.</p>
-            <p><strong>Fórmula:</strong> a = v²/r</p>
-        </div>
+            <span class="formula">a = v²/r</span>
+        </article>
+
     </div>
 </section>
 
 <section id="dinamica">
     <h2>Dinámica</h2>
     <div class="grid">
-        <div class="card">
+
+        <article class="card">
             <h3>Leyes de Newton</h3>
             <p>Las 3 leyes fundamentales del movimiento.</p>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
             <h3>Fuerzas</h3>
             <p>Gravedad, rozamiento, tensión y normal.</p>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
             <h3>Aplicaciones</h3>
-            <p>Problemas complejos de sistemas dinámicos.</p>
-        </div>
+            <p>Resolución de problemas reales.</p>
+        </article>
+
     </div>
 </section>
 
 <section id="energia">
     <h2>Energía y Trabajo</h2>
     <div class="grid">
-        <div class="card">
+
+        <article class="card">
             <h3>Energía Cinética</h3>
-            <p>Ec = ½mv²</p>
-        </div>
+            <span class="formula">Ec = ½mv²</span>
+        </article>
 
-        <div class="card">
+        <article class="card">
             <h3>Energía Potencial</h3>
-            <p>Ep = mgh</p>
-        </div>
+            <span class="formula">Ep = mgh</span>
+        </article>
 
-        <div class="card">
+        <article class="card">
             <h3>Conservación</h3>
             <p>La energía total permanece constante.</p>
-        </div>
+        </article>
+
     </div>
 </section>
 
 <section id="electromagnetismo">
     <h2>Electromagnetismo</h2>
     <div class="grid">
-        <div class="card">
+
+        <article class="card">
             <h3>Campo Eléctrico</h3>
-            <p>E = F/q</p>
-        </div>
+            <span class="formula">E = F/q</span>
+        </article>
 
-        <div class="card">
+        <article class="card">
             <h3>Ley de Coulomb</h3>
-            <p>F = k(q1q2/r²)</p>
-        </div>
+            <span class="formula">F = k(q₁q₂ / r²)</span>
+        </article>
 
-        <div class="card">
+        <article class="card">
             <h3>Magnetismo</h3>
             <p>Campos magnéticos y fuerzas sobre cargas.</p>
-        </div>
+        </article>
+
     </div>
 </section>
 
 <section id="cuantica">
     <h2>Física Cuántica</h2>
     <div class="grid">
-        <div class="card">
+
+        <article class="card">
             <h3>Efecto Fotoeléctrico</h3>
             <p>La luz puede comportarse como partícula.</p>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
             <h3>Dualidad Onda-Partícula</h3>
             <p>La materia tiene naturaleza dual.</p>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
             <h3>Principio de Incertidumbre</h3>
             <p>No se pueden conocer posición y velocidad a la vez.</p>
-        </div>
+        </article>
+
     </div>
 </section>
+
+<!-- ===============================
+     🧠 QUIZ
+================================ -->
 <section id="quiz">
     <h2>Quiz Interactivo</h2>
     <div id="quiz-container"></div>
 </section>
+
+</main>
+
+<!-- ===============================
+     📊 FOOTER PRO
+================================ -->
 <footer>
-    <p>© 2026 - Portal de Física Nivel PRO 🚀</p>
+    <p>© 2026 · Plataforma de Física PRO ⚡</p>
 </footer>
-<script src="script.js"></script>
+
+<!-- ===============================
+     ⚡ JS
+================================ -->
+<script src="script.js" defer></script>
+
 </body>
 </html>
