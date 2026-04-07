@@ -14,6 +14,7 @@ const App = {
         this.initParticles();
         this.initPhysicsCalculator();
         this.initQuiz();
+        this.initChatbot(); // 🤖 añadido
     },
 
     cacheDOM() {
@@ -21,7 +22,7 @@ const App = {
     },
 
 // ===============================
-// 🌊 SCROLL ANIMATIONS (MEJORADO)
+// 🌊 SCROLL ANIMATIONS
 // ===============================
     initScrollAnimations() {
         const elements = document.querySelectorAll(".card");
@@ -29,13 +30,10 @@ const App = {
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
-
                 entry.target.classList.add("show");
-                obs.unobserve(entry.target); // 🔥 mejora rendimiento
+                obs.unobserve(entry.target);
             });
-        }, {
-            threshold: 0.2
-        });
+        }, { threshold: 0.2 });
 
         elements.forEach(el => {
             el.classList.add("hidden");
@@ -44,25 +42,20 @@ const App = {
     },
 
 // ===============================
-// 🧭 SCROLL SUAVE PRO
+// 🧭 SCROLL SUAVE
 // ===============================
     initSmoothScroll() {
         document.querySelectorAll("nav a").forEach(anchor => {
             anchor.addEventListener("click", e => {
                 e.preventDefault();
-
                 const target = document.querySelector(anchor.getAttribute("href"));
-
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
             });
         });
     },
 
 // ===============================
-// 🌗 THEME PRO (CON MEMORIA)
+// 🌗 THEME
 // ===============================
     initTheme() {
         const toggle = document.createElement("button");
@@ -86,7 +79,7 @@ const App = {
     },
 
 // ===============================
-// ✨ PARTÍCULAS PRO (INTERACTIVAS)
+// ✨ PARTÍCULAS
 // ===============================
     initParticles() {
         const canvas = document.createElement("canvas");
@@ -94,7 +87,6 @@ const App = {
         document.body.appendChild(canvas);
 
         const ctx = canvas.getContext("2d");
-
         let mouse = { x: null, y: null };
 
         window.addEventListener("mousemove", e => {
@@ -124,11 +116,9 @@ const App = {
                 p.x += p.dx;
                 p.y += p.dy;
 
-                // rebote
                 if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
                 if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
 
-                // interacción mouse
                 if (mouse.x && Math.hypot(p.x - mouse.x, p.y - mouse.y) < 100) {
                     p.x += (p.x - mouse.x) * 0.02;
                     p.y += (p.y - mouse.y) * 0.02;
@@ -145,7 +135,7 @@ const App = {
     },
 
 // ===============================
-// 🧮 CALCULADORA PRO
+// 🧮 CALCULADORA
 // ===============================
     initPhysicsCalculator() {
         const box = document.createElement("div");
@@ -183,32 +173,19 @@ const App = {
     },
 
 // ===============================
-// 🧠 QUIZ PRO MAX
+// 🧠 QUIZ
 // ===============================
     initQuiz() {
         const container = document.getElementById("quiz-container");
         if (!container) return;
 
         const questions = [
-            {
-                q: "¿Fórmula de energía cinética?",
-                options: ["E=mc²", "½mv²", "F=ma"],
-                correct: 1
-            },
-            {
-                q: "Unidad de fuerza:",
-                options: ["Joule", "Newton", "Watt"],
-                correct: 1
-            },
-            {
-                q: "Autor de la relatividad:",
-                options: ["Newton", "Einstein", "Galileo"],
-                correct: 1
-            }
+            { q: "¿Fórmula de energía cinética?", options: ["E=mc²", "½mv²", "F=ma"], correct: 1 },
+            { q: "Unidad de fuerza:", options: ["Joule", "Newton", "Watt"], correct: 1 },
+            { q: "Autor de la relatividad:", options: ["Newton", "Einstein", "Galileo"], correct: 1 }
         ];
 
-        let i = 0;
-        let score = 0;
+        let i = 0, score = 0;
 
         const render = () => {
             const q = questions[i];
@@ -228,9 +205,7 @@ const App = {
             container.querySelectorAll(".quiz-btn").forEach(btn => {
                 btn.addEventListener("click", () => {
                     const ans = +btn.dataset.i;
-
                     btn.classList.add(ans === q.correct ? "correct" : "wrong");
-
                     if (ans === q.correct) score++;
 
                     setTimeout(() => {
@@ -245,7 +220,7 @@ const App = {
             container.innerHTML = `
                 <div class="quiz-box">
                     <h2>🏆 ${score}/${questions.length}</h2>
-                    <p>${getMessage(score)}</p>
+                    <p>${score === 3 ? "💯 Perfecto!" : score === 2 ? "🔥 Muy bien!" : "💡 Sigue aprendiendo!"}</p>
                     <button id="retry">Reintentar</button>
                 </div>
             `;
@@ -257,12 +232,49 @@ const App = {
             };
         };
 
-        const getMessage = score => {
-            if (score === 3) return "💯 Perfecto!";
-            if (score === 2) return "🔥 Muy bien!";
-            return "💡 Sigue aprendiendo!";
+        render();
+    },
+
+// ===============================
+// 🤖 CHATBOT
+// ===============================
+    initChatbot() {
+        const chatbox = document.getElementById("chatbox");
+        const input = document.getElementById("userInput");
+        const button = document.querySelector("#chatbot button");
+
+        if (!chatbox || !input || !button) return;
+
+        const sendMessage = () => {
+            const text = input.value.trim();
+            if (!text) return;
+
+            chatbox.innerHTML += `<p class="user">Tú: ${text}</p>`;
+
+            const response = this.getResponse(text.toLowerCase());
+
+            setTimeout(() => {
+                chatbox.innerHTML += `<p class="bot">Bot: ${response}</p>`;
+                chatbox.scrollTop = chatbox.scrollHeight;
+            }, 400);
+
+            input.value = "";
         };
 
-        render();
+        button.addEventListener("click", sendMessage);
+
+        input.addEventListener("keypress", e => {
+            if (e.key === "Enter") sendMessage();
+        });
+    },
+
+    getResponse(input) {
+        if (input.includes("velocidad")) return "v = d/t";
+        if (input.includes("aceleracion") || input.includes("aceleración")) return "a = Δv/t";
+        if (input.includes("newton")) return "F = m · a";
+        if (input.includes("energia") || input.includes("energía")) return "E = ½mv² o mgh";
+        if (input.includes("ohm")) return "V = I · R";
+
+        return "Pregunta sobre física (velocidad, energía, fuerzas...) 🤖";
     }
 };
