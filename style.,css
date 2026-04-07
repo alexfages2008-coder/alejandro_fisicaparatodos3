@@ -1,88 +1,139 @@
 /* ===============================
-   🌌 RESET GLOBAL
+   🌌 RESET MODERNO
 ================================ */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 /* ===============================
-   🎨 VARIABLES (DISEÑO PRO)
+   🎨 VARIABLES PRO (THEME READY)
 ================================ */
 :root {
     --primary: #00e5ff;
-    --secondary: #0f2027;
-    --glass: rgba(255, 255, 255, 0.08);
+    --primary-dark: #00bcd4;
+    --bg-1: #0f2027;
+    --bg-2: #203a43;
+    --bg-3: #2c5364;
+
+    --glass: rgba(255, 255, 255, 0.06);
+    --glass-strong: rgba(255, 255, 255, 0.12);
+
     --text: #ffffff;
-    --shadow: 0 8px 32px rgba(0,0,0,0.4);
+    --text-muted: rgba(255,255,255,0.7);
+
+    --border: rgba(255,255,255,0.15);
+
+    --shadow-soft: 0 8px 25px rgba(0,0,0,0.3);
+    --shadow-strong: 0 15px 50px rgba(0,0,0,0.6);
+
+    --radius: 20px;
+    --transition: 0.35s cubic-bezier(.2,.8,.2,1);
 }
 
 /* ===============================
-   🌍 BODY
+   🌍 BODY MEJORADO
 ================================ */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
     color: var(--text);
     overflow-x: hidden;
 }
 
+/* FONDO ANIMADO SUTIL */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,229,255,0.08), transparent 60%);
+    animation: bgMove 20s linear infinite;
+    z-index: -1;
+}
+
+@keyframes bgMove {
+    0% { transform: translate(-25%, -25%); }
+    100% { transform: translate(25%, 25%); }
+}
+
 /* ===============================
-   🔝 HEADER
+   🔝 HEADER PRO
 ================================ */
 header {
     text-align: center;
-    padding: 60px 20px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 80px 20px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
 }
 
 header h1 {
-    font-size: 3.5rem;
-    letter-spacing: 3px;
-    background: linear-gradient(90deg, #00e5ff, #00bcd4);
+    font-size: 3.8rem;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
     -webkit-background-clip: text;
     color: transparent;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px rgba(0,229,255,0.4); }
+    to { text-shadow: 0 0 25px rgba(0,229,255,0.9); }
 }
 
 header p {
-    margin-top: 10px;
-    opacity: 0.8;
+    margin-top: 15px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
 }
 
 /* ===============================
-   🧭 NAVBAR
+   🧭 NAVBAR PRO
 ================================ */
 nav {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    padding: 15px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
+    gap: 40px;
+    padding: 18px;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(15px);
     position: sticky;
     top: 0;
     z-index: 1000;
+    border-bottom: 1px solid var(--border);
 }
 
 nav a {
-    color: white;
+    color: var(--text);
     text-decoration: none;
     font-weight: 600;
     position: relative;
+    transition: var(--transition);
 }
 
+nav a:hover {
+    color: var(--primary);
+}
+
+/* ANIMACIÓN SUBRAYADO PRO */
 nav a::after {
     content: "";
     position: absolute;
     width: 0%;
     height: 2px;
-    bottom: -5px;
-    left: 0;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
     background: var(--primary);
-    transition: 0.3s;
+    transition: var(--transition);
 }
 
 nav a:hover::after {
@@ -90,99 +141,103 @@ nav a:hover::after {
 }
 
 /* ===============================
-   📦 SECCIONES
+   📦 SECCIONES PRO
 ================================ */
 section {
-    padding: 80px 10%;
+    padding: 100px 10%;
+    animation: fadeInUp 1s ease;
 }
 
 h2 {
-    margin-bottom: 30px;
-    font-size: 2rem;
-    border-left: 5px solid var(--primary);
+    margin-bottom: 40px;
+    font-size: 2.3rem;
+    border-left: 6px solid var(--primary);
     padding-left: 15px;
 }
 
 /* ===============================
-   🧱 GRID
+   🧱 GRID MEJORADO
 ================================ */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
 }
 
 /* ===============================
-   💎 CARDS
+   💎 CARDS ULTRA PRO
 ================================ */
 .card {
     background: var(--glass);
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(15px);
-    transition: all 0.4s ease;
+    border-radius: var(--radius);
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    transition: var(--transition);
     position: relative;
     overflow: hidden;
 }
 
+/* EFECTO LUZ DINÁMICO */
 .card::before {
     content: "";
     position: absolute;
-    width: 150%;
-    height: 150%;
-    background: linear-gradient(45deg, transparent, rgba(0,229,255,0.2), transparent);
-    transform: rotate(45deg);
-    top: -100%;
-    left: -100%;
-    transition: 0.6s;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(0,229,255,0.3), transparent);
+    opacity: 0;
+    transition: var(--transition);
 }
 
 .card:hover::before {
-    top: 100%;
-    left: 100%;
+    opacity: 1;
 }
 
+/* HOVER PRO */
 .card:hover {
-    transform: translateY(-10px) scale(1.03);
+    transform: translateY(-12px) scale(1.04);
+    box-shadow: var(--shadow-strong);
 }
 
 /* ===============================
-   🔘 BOTONES
+   🔘 BOTONES PRO
 ================================ */
 .btn {
     display: inline-block;
-    margin-top: 10px;
-    padding: 10px 25px;
-    background: linear-gradient(90deg, #00e5ff, #00bcd4);
+    margin-top: 15px;
+    padding: 12px 28px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
     color: black;
-    border-radius: 30px;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
+    transition: var(--transition);
+    box-shadow: 0 0 15px rgba(0,229,255,0.5);
 }
 
 .btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.12);
+    box-shadow: 0 0 30px rgba(0,229,255,0.9);
 }
 
 /* ===============================
-   📊 FOOTER
+   📊 FOOTER PRO
 ================================ */
 footer {
     text-align: center;
-    padding: 30px;
+    padding: 40px;
     background: rgba(0,0,0,0.7);
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
 }
 
 /* ===============================
-   ✨ ANIMACIONES
+   ✨ ANIMACIONES PRO
 ================================ */
-@keyframes fadeIn {
+@keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(60px);
     }
     to {
         opacity: 1;
@@ -190,47 +245,32 @@ footer {
     }
 }
 
-section {
-    animation: fadeIn 1s ease;
-}
-
 /* ===============================
-   📱 RESPONSIVE
+   📱 RESPONSIVE PRO
 ================================ */
 @media (max-width: 768px) {
     header h1 {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
     }
 
     nav {
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 15px;
     }
 
     section {
-        padding: 50px 5%;
+        padding: 60px 5%;
     }
 }
 
 /* ===============================
-   🌟 EFECTO SCROLLBAR
+   🌟 SCROLLBAR PRO
 ================================ */
 ::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #111;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary);
+    background: linear-gradient(var(--primary), var(--primary-dark));
     border-radius: 10px;
-}
-
-/* ===============================
-   💡 EFECTO GLOW GLOBAL
-================================ */
-h1, h2 {
-    text-shadow: 0 0 10px rgba(0,229,255,0.5);
 }
