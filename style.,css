@@ -1,17 +1,20 @@
-/* ===============================
-   🌌 RESET MODERNO
-================================ */
-*,
-*::before,
-*::after {
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Física 2º Bachillerato</title>
+
+<style>
+
+/* RESET */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ===============================
-   🎨 VARIABLES PRO (THEME READY)
-================================ */
+/* VARIABLES */
 :root {
     --primary: #00e5ff;
     --primary-dark: #00bcd4;
@@ -19,13 +22,11 @@
     --bg-2: #203a43;
     --bg-3: #2c5364;
 
-    --glass: rgba(255, 255, 255, 0.06);
-    --glass-strong: rgba(255, 255, 255, 0.12);
+    --glass: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.15);
 
     --text: #ffffff;
     --text-muted: rgba(255,255,255,0.7);
-
-    --border: rgba(255,255,255,0.15);
 
     --shadow-soft: 0 8px 25px rgba(0,0,0,0.3);
     --shadow-strong: 0 15px 50px rgba(0,0,0,0.6);
@@ -34,188 +35,180 @@
     --transition: 0.35s cubic-bezier(.2,.8,.2,1);
 }
 
-/* ===============================
-   🌍 BODY
-================================ */
-html {
-    scroll-behavior: smooth;
-}
-
+/* BODY */
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
     color: var(--text);
-    overflow-x: hidden;
 }
 
-/* FONDO */
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0,229,255,0.08), transparent 60%);
-    animation: bgMove 20s linear infinite;
-    z-index: -1;
-}
-
-@keyframes bgMove {
-    0% { transform: translate(-25%, -25%); }
-    100% { transform: translate(25%, 25%); }
-}
-
-/* ===============================
-   🔝 HEADER
-================================ */
+/* HEADER */
 header {
     text-align: center;
     padding: 80px 20px;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.5);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
 }
 
 header h1 {
-    font-size: 3.8rem;
-    letter-spacing: 4px;
+    font-size: 3rem;
     background: linear-gradient(90deg, var(--primary), var(--primary-dark));
     -webkit-background-clip: text;
     color: transparent;
-    animation: glow 2s infinite alternate;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px rgba(0,229,255,0.4); }
-    to { text-shadow: 0 0 25px rgba(0,229,255,0.9); }
-}
-
-/* ===============================
-   🧭 NAVBAR
-================================ */
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    padding: 18px;
-    background: rgba(255,255,255,0.04);
-    backdrop-filter: blur(15px);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid var(--border);
-}
-
-/* ===============================
-   📦 SECCIONES
-================================ */
-section {
-    padding: 100px 10%;
-    animation: fadeInUp 1s ease;
-}
-
-/* ===============================
-   💎 CARDS
-================================ */
-.card {
-    background: var(--glass);
-    border-radius: var(--radius);
-    padding: 30px;
-    box-shadow: var(--shadow-soft);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    transition: var(--transition);
-}
-
-/* ===============================
-   🤖 CHATBOT PRO
-================================ */
-#chatbot {
-    text-align: center;
-}
-
-.chat-container {
-    max-width: 500px;
-    margin: 30px auto;
-    padding: 20px;
-    border-radius: var(--radius);
-    background: var(--glass);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-soft);
-}
-
-/* caja mensajes */
-#chatbox {
-    height: 260px;
-    overflow-y: auto;
-    padding: 15px;
-    border-radius: 12px;
-    background: rgba(0,0,0,0.3);
-    margin-bottom: 15px;
-    font-size: 0.95rem;
-}
-
-/* mensajes */
-.user {
-    text-align: right;
-    margin: 8px 0;
-    color: #4fc3f7;
-}
-
-.bot {
-    text-align: left;
-    margin: 8px 0;
-    color: #00e5ff;
-}
-
-/* input */
-#userInput {
-    width: 70%;
-    padding: 10px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    background: rgba(255,255,255,0.1);
-    color: white;
-}
-
-/* botón */
-#chatbot button {
-    padding: 10px 18px;
-    border-radius: 20px;
-    border: none;
-    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-    cursor: pointer;
-    font-weight: bold;
-    transition: var(--transition);
-}
-
-#chatbot button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(0,229,255,0.7);
-}
-
-/* ===============================
-   📊 FOOTER
-================================ */
-footer {
-    text-align: center;
-    padding: 40px;
-    background: rgba(0,0,0,0.7);
-    border-top: 1px solid var(--border);
+header p {
+    margin-top: 15px;
     color: var(--text-muted);
 }
 
-/* ===============================
-   📱 RESPONSIVE
-================================ */
-@media (max-width: 768px) {
-    #userInput {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    #chatbot button {
-        width: 100%;
-    }
+/* NAV */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
 }
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    position: relative;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+/* SECCIONES */
+section {
+    padding: 60px 10%;
+}
+
+/* TITULOS */
+h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+/* GRID */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* CARDS */
+.card {
+    background: var(--glass);
+    padding: 25px;
+    border-radius: var(--radius);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-strong);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: rgba(0,0,0,0.6);
+    color: var(--text-muted);
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Física 2º Bachillerato</h1>
+    <p>Domina la física como un profesional 🚀</p>
+</header>
+
+<nav>
+    <a href="#cinematica">Cinemática</a>
+    <a href="#dinamica">Dinámica</a>
+    <a href="#energia">Energía</a>
+</nav>
+
+<section id="cinematica">
+    <h2>Cinemática</h2>
+    <div class="cards-container">
+        <div class="card">
+            <h3>Movimiento Rectilíneo</h3>
+            <p>MRU y MRUA. v = d/t</p>
+        </div>
+
+        <div class="card">
+            <h3>Movimiento Parabólico</h3>
+            <p>Movimiento en 2D bajo gravedad.</p>
+        </div>
+
+        <div class="card">
+            <h3>Movimiento Circular</h3>
+            <p>Aceleración centrípeta: a = v²/r</p>
+        </div>
+    </div>
+</section>
+
+<section id="dinamica">
+    <h2>Dinámica</h2>
+    <div class="cards-container">
+        <div class="card">
+            <h3>Leyes de Newton</h3>
+            <p>Las 3 leyes fundamentales del movimiento.</p>
+        </div>
+
+        <div class="card">
+            <h3>Fuerzas</h3>
+            <p>Gravedad, rozamiento, tensión y normal.</p>
+        </div>
+
+        <div class="card">
+            <h3>Aplicaciones</h3>
+            <p>Resolución de problemas reales.</p>
+        </div>
+    </div>
+</section>
+
+<section id="energia">
+    <h2>Energía y Trabajo</h2>
+    <div class="cards-container">
+        <div class="card">
+            <h3>Energía Cinética</h3>
+            <p>Ec = ½mv²</p>
+        </div>
+
+        <div class="card">
+            <h3>Energía Potencial</h3>
+            <p>Energía almacenada por posición.</p>
+        </div>
+
+        <div class="card">
+            <h3>Trabajo</h3>
+            <p>Relación entre fuerza y desplazamiento.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Física Pro | Hecho por Alejandro</p>
+</footer>
+
+</body>
+</html>
