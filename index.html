@@ -1,120 +1,231 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Física Pro</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Física Pro</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <!-- Fuente -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* BODY */
+body{
+font-family:'Inter',sans-serif;
+background:#0f172a;
+color:#e2e8f0;
+display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:250px;
+height:100vh;
+background:#020617;
+padding:30px 20px;
+position:fixed;
+}
+
+.sidebar h2{
+color:#38bdf8;
+margin-bottom:30px;
+}
+
+.sidebar a{
+display:block;
+padding:10px;
+margin:10px 0;
+border-radius:8px;
+color:#94a3b8;
+text-decoration:none;
+transition:0.3s;
+}
+
+.sidebar a:hover{
+background:#1e293b;
+color:#38bdf8;
+}
+
+/* MAIN */
+.main{
+margin-left:250px;
+padding:40px;
+width:100%;
+}
+
+/* HEADER */
+.header h1{
+font-size:2.5rem;
+margin-bottom:10px;
+}
+
+/* SECTIONS */
+.section{
+margin-top:40px;
+}
+
+.section h2{
+color:#38bdf8;
+margin-bottom:20px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+/* CARDS */
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:12px;
+transition:0.3s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-5px);
+border:1px solid #38bdf8;
+}
+
+/* CHAT */
+#chatBox{
+background:#1e293b;
+height:200px;
+overflow-y:auto;
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+}
+
+#inputChat{
+width:70%;
+padding:10px;
+border:none;
+border-radius:8px;
+margin-top:10px;
+background:#020617;
+color:white;
+}
+
+button{
+padding:10px;
+border:none;
+border-radius:8px;
+background:#38bdf8;
+cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+}
+
+.main{
+margin-left:0;
+}
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
 <div class="sidebar">
-  <h2>Física ⚡</h2>
-  <a href="#cinematica">Cinemática</a>
-  <a href="#dinamica">Dinámica</a>
-  <a href="#energia">Energía</a>
-  <a href="#chat">Chatbot</a>
+<h2>Física ⚡</h2>
+<a href="#cinematica">Cinemática</a>
+<a href="#dinamica">Dinámica</a>
+<a href="#energia">Energía</a>
+<a href="#chat">Chatbot</a>
 </div>
 
-<!-- CONTENIDO -->
 <div class="main">
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>Física 2º Bachillerato</h1>
-    <p>Aprende rápido, claro y con ejemplos</p>
-  </div>
+<div class="header">
+<h1>Física 2º Bachillerato</h1>
+<p>Aprende rápido, claro y con ejemplos</p>
+</div>
 
-  <!-- CINEMÁTICA -->
-  <div class="section" id="cinematica">
-    <h2>Cinemática</h2>
-    <div class="grid">
-      <div class="card" onclick="mostrarFormula('mru')">
-        <h3>MRU</h3>
-        <p>Movimiento rectilíneo uniforme</p>
-      </div>
+<div class="section" id="cinematica">
+<h2>Cinemática</h2>
+<div class="grid">
+<div class="card" onclick="mostrar('MRU: v = d/t')"><h3>MRU</h3></div>
+<div class="card" onclick="mostrar('MRUA: v = v0 + at')"><h3>MRUA</h3></div>
+<div class="card"><h3>Movimiento circular</h3><p>a = v²/r</p></div>
+</div>
+</div>
 
-      <div class="card" onclick="mostrarFormula('mrua')">
-        <h3>MRUA</h3>
-        <p>Movimiento acelerado</p>
-      </div>
+<div class="section" id="dinamica">
+<h2>Dinámica</h2>
+<div class="grid">
+<div class="card" onclick="mostrar('F = m · a')"><h3>Leyes de Newton</h3></div>
+<div class="card"><h3>Fuerzas</h3></div>
+<div class="card"><h3>Aplicaciones</h3></div>
+</div>
+</div>
 
-      <div class="card">
-        <h3>Movimiento circular</h3>
-        <p>a = v² / r</p>
-      </div>
-    </div>
-  </div>
+<div class="section" id="energia">
+<h2>Energía</h2>
+<div class="grid">
+<div class="card" onclick="mostrar('Ec = 1/2 m v²')"><h3>Energía cinética</h3></div>
+<div class="card"><h3>Potencial</h3></div>
+<div class="card" onclick="mostrar('W = F · d')"><h3>Trabajo</h3></div>
+</div>
+</div>
 
-  <!-- DINÁMICA -->
-  <div class="section" id="dinamica">
-    <h2>Dinámica</h2>
-    <div class="grid">
-      <div class="card" onclick="mostrarFormula('fuerza')">
-        <h3>Leyes de Newton</h3>
-        <p>F = m · a</p>
-      </div>
+<div class="section">
+<h2>Resultado</h2>
+<p id="resultado">Haz clic en una tarjeta</p>
+</div>
 
-      <div class="card">
-        <h3>Fuerzas</h3>
-        <p>Interacciones entre cuerpos</p>
-      </div>
-
-      <div class="card">
-        <h3>Aplicaciones</h3>
-        <p>Problemas reales</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ENERGÍA -->
-  <div class="section" id="energia">
-    <h2>Energía</h2>
-    <div class="grid">
-      <div class="card" onclick="mostrarFormula('energia')">
-        <h3>Energía cinética</h3>
-        <p>½mv²</p>
-      </div>
-
-      <div class="card">
-        <h3>Energía potencial</h3>
-        <p>mgh</p>
-      </div>
-
-      <div class="card" onclick="mostrarFormula('trabajo')">
-        <h3>Trabajo</h3>
-        <p>W = F · d</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- RESULTADO FORMULA -->
-  <div class="section">
-    <h2>Resultado</h2>
-    <p id="resultadoFormula">Haz clic en una tarjeta para ver la fórmula</p>
-  </div>
-
-  <!-- CHATBOT -->
-  <div class="section" id="chat">
-    <h2>Chatbot Física 🤖</h2>
-
-    <div id="chatBox"></div>
-
-    <input id="inputChat" type="text" placeholder="Pregunta sobre física o matemáticas...">
-    <button onclick="enviarMensaje()">Enviar</button>
-  </div>
+<div class="section" id="chat">
+<h2>Chatbot 🤖</h2>
+<div id="chatBox"></div>
+<input id="inputChat" placeholder="Pregunta algo...">
+<button onclick="enviar()">Enviar</button>
+</div>
 
 </div>
 
-<!-- SCRIPT -->
-<script src="script.js"></script>
+<script>
+
+function mostrar(texto){
+document.getElementById("resultado").innerText = texto;
+}
+
+function enviar(){
+let input = document.getElementById("inputChat");
+let chat = document.getElementById("chatBox");
+
+let msg = input.value.toLowerCase();
+if(msg==="") return;
+
+chat.innerHTML += "<div><b>Tú:</b> "+msg+"</div>";
+
+let res = "No sé eso 🤔";
+
+if(msg.includes("mru")) res="MRU: v=d/t";
+if(msg.includes("fuerza")) res="F = m·a";
+if(msg.includes("energia")) res="Ec=1/2mv²";
+if(msg.includes("derivada")) res="Es la pendiente de una función";
+
+setTimeout(()=>{
+chat.innerHTML += "<div><b>Bot:</b> "+res+"</div>";
+chat.scrollTop = chat.scrollHeight;
+},500);
+
+input.value="";
+}
+
+</script>
 
 </body>
 </html>
