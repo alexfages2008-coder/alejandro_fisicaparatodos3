@@ -1,241 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física Pro</title>
 
-<title>Física 2º Bachillerato | Plataforma PRO</title>
-<meta name="description" content="Aprende Física de 2º de Bachillerato con una plataforma interactiva, moderna y profesional.">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<!-- CSS -->
-<link rel="stylesheet" href="styles.css">
-
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- ===============================
-     🚀 HEADER HERO
-================================ -->
-<header class="hero">
-    <div class="hero-content">
-        <h1>Física 2º Bachillerato</h1>
-        <p>Domina la física como un profesional 🚀</p>
-        <a href="#cinematica" class="btn">Empezar</a>
-    </div>
-</header>
-
-<!-- ===============================
-     🧭 NAVBAR PRO
-================================ -->
-<nav class="navbar">
-    <a href="#cinematica">Cinemática</a>
-    <a href="#dinamica">Dinámica</a>
-    <a href="#energia">Energía</a>
-    <a href="#electromagnetismo">Electromagnetismo</a>
-    <a href="#cuantica">Cuántica</a>
-    <a href="#quiz">Quiz</a>
-    <a href="#chatbot">Chatbot</a>
-</nav>
-
-<main>
-
-<section id="cinematica">
-    <h2>Cinemática</h2>
-    <div class="grid">
-        <article class="card">
-            <h3>Movimiento Rectilíneo</h3>
-            <p>Estudio del movimiento en línea recta: MRU y MRUA.</p>
-            <span class="formula">v = d/t</span>
-        </article>
-
-        <article class="card">
-            <h3>Movimiento Parabólico</h3>
-            <p>Movimiento en dos dimensiones bajo gravedad.</p>
-            <span class="formula">Independencia de ejes</span>
-        </article>
-
-        <article class="card">
-            <h3>Movimiento Circular</h3>
-            <p>Movimiento con aceleración centrípeta.</p>
-            <span class="formula">a = v²/r</span>
-        </article>
-    </div>
-</section>
-
-<section id="dinamica">
-    <h2>Dinámica</h2>
-    <div class="grid">
-        <article class="card">
-            <h3>Leyes de Newton</h3>
-            <p>Las 3 leyes fundamentales del movimiento.</p>
-        </article>
-
-        <article class="card">
-            <h3>Fuerzas</h3>
-            <p>Gravedad, rozamiento, tensión y normal.</p>
-        </article>
-
-        <article class="card">
-            <h3>Aplicaciones</h3>
-            <p>Resolución de problemas reales.</p>
-        </article>
-    </div>
-</section>
-
-<section id="energia">
-    <h2>Energía y Trabajo</h2>
-    <div class="grid">
-        <article class="card">
-            <h3>Energía Cinética</h3>
-            <span class="formula">Ec = ½mv²</span>
-        </article>
-
-        <article class="card">
-            <h3>Energía Potencial</h3>
-            <span class="formula">Ep = mgh</span>
-        </article>
-
-        <article class="card">
-            <h3>Conservación</h3>
-            <p>La energía total permanece constante.</p>
-        </article>
-    </div>
-</section>
-
-<section id="electromagnetismo">
-    <h2>Electromagnetismo</h2>
-    <div class="grid">
-        <article class="card">
-            <h3>Campo Eléctrico</h3>
-            <span class="formula">E = F/q</span>
-        </article>
-
-        <article class="card">
-            <h3>Ley de Coulomb</h3>
-            <span class="formula">F = k(q₁q₂ / r²)</span>
-        </article>
-
-        <article class="card">
-            <h3>Magnetismo</h3>
-            <p>Campos magnéticos y fuerzas sobre cargas.</p>
-        </article>
-    </div>
-</section>
-
-<section id="cuantica">
-    <h2>Física Cuántica</h2>
-    <div class="grid">
-        <article class="card">
-            <h3>Efecto Fotoeléctrico</h3>
-            <p>La luz puede comportarse como partícula.</p>
-        </article>
-
-        <article class="card">
-            <h3>Dualidad Onda-Partícula</h3>
-            <p>La materia tiene naturaleza dual.</p>
-        </article>
-
-        <article class="card">
-            <h3>Principio de Incertidumbre</h3>
-            <p>No se pueden conocer posición y velocidad a la vez.</p>
-        </article>
-    </div>
-</section>
-
-<!-- ===============================
-     🧠 QUIZ
-================================ -->
-<section id="quiz">
-    <h2>Quiz Interactivo</h2>
-    <div id="quiz-container"></div>
-</section>
-
-<!-- ===============================
-     🤖 CHATBOT
-================================ -->
-<section id="chatbot">
-    <h2>Chatbot de Física 🤖</h2>
-
-    <div class="chat-container">
-        <div id="chatbox"></div>
-
-        <input type="text" id="userInput" placeholder="Haz una pregunta de física...">
-        <button onclick="sendMessage()">Enviar</button>
-    </div>
-</section>
-
-</main>
-
-<!-- ===============================
-     📊 FOOTER PRO
-================================ -->
-<footer>
-    <p>© 2026 · Plataforma de Física PRO ⚡</p>
-</footer>
-
-<!-- ===============================
-     ⚡ JS CHATBOT
-================================ -->
-<script>
-function sendMessage() {
-    let input = document.getElementById("userInput").value;
-    let chatbox = document.getElementById("chatbox");
-
-    if (input.trim() === "") return;
-
-    chatbox.innerHTML += `<p class="user">Tú: ${input}</p>`;
-
-    let response = getBotResponse(input.toLowerCase());
-
-    setTimeout(() => {
-        chatbox.innerHTML += `<p class="bot">Bot: ${response}</p>`;
-        chatbox.scrollTop = chatbox.scrollHeight;
-    }, 500);
-
-    document.getElementById("userInput").value = "";
-}
-
-function getBotResponse(input) {
-
-    if (input.includes("velocidad")) {
-        return "La velocidad es el cambio de posición respecto al tiempo (v = d/t).";
-    }
-
-    if (input.includes("aceleración") || input.includes("aceleracion")) {
-        return "La aceleración es el cambio de velocidad en el tiempo (a = Δv/t).";
-    }
-
-    if (input.includes("newton")) {
-        return "Segunda ley de Newton: F = m · a.";
-    }
-
-    if (input.includes("energia") || input.includes("energía")) {
-        return "La energía es la capacidad de realizar trabajo.";
-    }
-
-    if (input.includes("ohm")) {
-        return "Ley de Ohm: V = I · R.";
-    }
-
-    return "No estoy seguro. Prueba con velocidad, energía, fuerzas o electricidad.";
-}
-
-     <div style="margin-top:50px;">
-  <h2>Chatbot Física 🤖</h2>
-
-  <div id="chatBox" style="height:200px;overflow-y:auto;background:#1e293b;padding:10px;border-radius:10px;"></div>
-
-  <input id="inputChat" type="text" placeholder="Pregunta algo..." style="width:70%;padding:10px;margin-top:10px;">
-  
-  <button onclick="enviarMensaje()" style="padding:10px;">Enviar</button>
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Física ⚡</h2>
+  <a href="#cinematica">Cinemática</a>
+  <a href="#dinamica">Dinámica</a>
+  <a href="#energia">Energía</a>
+  <a href="#chat">Chatbot</a>
 </div>
 
+<!-- CONTENIDO -->
+<div class="main">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Física 2º Bachillerato</h1>
+    <p>Aprende rápido, claro y con ejemplos</p>
+  </div>
+
+  <!-- CINEMÁTICA -->
+  <div class="section" id="cinematica">
+    <h2>Cinemática</h2>
+    <div class="grid">
+      <div class="card" onclick="mostrarFormula('mru')">
+        <h3>MRU</h3>
+        <p>Movimiento rectilíneo uniforme</p>
+      </div>
+
+      <div class="card" onclick="mostrarFormula('mrua')">
+        <h3>MRUA</h3>
+        <p>Movimiento acelerado</p>
+      </div>
+
+      <div class="card">
+        <h3>Movimiento circular</h3>
+        <p>a = v² / r</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DINÁMICA -->
+  <div class="section" id="dinamica">
+    <h2>Dinámica</h2>
+    <div class="grid">
+      <div class="card" onclick="mostrarFormula('fuerza')">
+        <h3>Leyes de Newton</h3>
+        <p>F = m · a</p>
+      </div>
+
+      <div class="card">
+        <h3>Fuerzas</h3>
+        <p>Interacciones entre cuerpos</p>
+      </div>
+
+      <div class="card">
+        <h3>Aplicaciones</h3>
+        <p>Problemas reales</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENERGÍA -->
+  <div class="section" id="energia">
+    <h2>Energía</h2>
+    <div class="grid">
+      <div class="card" onclick="mostrarFormula('energia')">
+        <h3>Energía cinética</h3>
+        <p>½mv²</p>
+      </div>
+
+      <div class="card">
+        <h3>Energía potencial</h3>
+        <p>mgh</p>
+      </div>
+
+      <div class="card" onclick="mostrarFormula('trabajo')">
+        <h3>Trabajo</h3>
+        <p>W = F · d</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTADO FORMULA -->
+  <div class="section">
+    <h2>Resultado</h2>
+    <p id="resultadoFormula">Haz clic en una tarjeta para ver la fórmula</p>
+  </div>
+
+  <!-- CHATBOT -->
+  <div class="section" id="chat">
+    <h2>Chatbot Física 🤖</h2>
+
+    <div id="chatBox"></div>
+
+    <input id="inputChat" type="text" placeholder="Pregunta sobre física o matemáticas...">
+    <button onclick="enviarMensaje()">Enviar</button>
+  </div>
+
+</div>
+
+<!-- SCRIPT -->
 <script src="script.js"></script>
-</script>
 
 </body>
 </html>
