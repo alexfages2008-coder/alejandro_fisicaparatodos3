@@ -1,68 +1,98 @@
-# ⚡ Física 2º Bachillerato - Portal Profesional
+# ⚡ Física Pro - 2º Bachillerato
 
-Bienvenido al proyecto **más completo, visual y profesional** para el estudio de Física de 2º de Bachillerato.
-
-Este sitio web ha sido diseñado para ofrecer una experiencia moderna, clara y potente, combinando teoría, estructura visual y accesibilidad.
+Web interactiva para aprender Física y Matemáticas de 2º de Bachillerato de forma clara, rápida y visual.
 
 ---
 
-## 🌌 Vista previa
+## 🚀 Características
 
-🔗 Próximamente disponible en GitHub Pages
+- 📚 Contenidos de:
+  - Cinemática
+  - Dinámica
+  - Energía
 
----
-
-## 🧠 Contenidos
-
-El portal incluye los bloques fundamentales del currículo:
-
-### 📍 Cinemática
-- Movimiento rectilíneo (MRU y MRUA)
-- Movimiento parabólico
-- Movimiento circular
-
-### ⚙️ Dinámica
-- Leyes de Newton
-- Fuerzas (peso, normal, rozamiento, tensión)
-- Problemas aplicados
-
-### 🔋 Energía y Trabajo
-- Energía cinética y potencial
-- Trabajo mecánico
-- Conservación de la energía
-
-### ⚡ Electromagnetismo
-- Campo eléctrico
-- Ley de Coulomb
-- Campo magnético
-
-### 🌐 Física Cuántica
-- Efecto fotoeléctrico
-- Dualidad onda-partícula
-- Principio de incertidumbre
+- 🎯 Fórmulas interactivas (clic en tarjetas)
+- 🤖 Chatbot básico de Física y Matemáticas
+- 🎨 Diseño moderno y responsive
+- ⚡ Navegación rápida con menú lateral
 
 ---
 
-## 🎨 Características
-
-- 💎 Diseño moderno y elegante (Glassmorphism)
-- 📱 Totalmente responsive (móvil, tablet, PC)
-- ⚡ Animaciones suaves y experiencia fluida
-- 🧩 Estructura modular y fácil de ampliar
-- 🚀 Preparado para GitHub Pages
-
----
-
-## 🛠️ Tecnologías utilizadas
+## 🧠 Tecnologías utilizadas
 
 - HTML5
-- CSS3 (Flexbox + Grid)
-- Google Fonts
+- CSS3
+- JavaScript
 
 ---
 
-## 🚀 Instalación y uso
+## 📂 Estructura del proyecto
 
-1. Clona el repositorio:
-```bash
-git clone https://github.com/tu-usuario/tu-repo.git
+📁 proyecto/
+│
+├── index.html      # Estructura principal  
+├── style.css       # Estilos y diseño  
+├── script.js       # Lógica y chatbot  
+└── README.md       # Documentación  
+
+---
+
+## ▶️ Cómo usar
+
+1. Descarga o clona el repositorio  
+2. Abre el archivo `index.html` en tu navegador  
+3. ¡Empieza a aprender!
+
+---
+
+## 🤖 Chatbot
+
+El chatbot puede responder preguntas como:
+
+- "¿Qué es MRU?"
+- "fuerza"
+- "energía"
+- "derivada"
+- "integral"
+
+⚠️ Nota: Es un chatbot básico basado en palabras clave.
+
+---
+
+## 📸 Vista previa
+
+Interfaz con:
+- Menú lateral  
+- Tarjetas interactivas  
+- Chatbot integrado  
+
+---
+
+## 🔧 Mejoras futuras
+
+- Resolución de ejercicios paso a paso  
+- Simulaciones físicas  
+- Calculadora avanzada  
+- IA más avanzada (tipo ChatGPT)  
+- Modo claro/oscuro  
+
+---
+
+## 📘 Nivel educativo
+
+Diseñado para estudiantes de:
+
+- 2º Bachillerato  
+- Preparación EBAU  
+
+---
+
+## 👨‍💻 Autor
+
+Proyecto creado con fines educativos.
+
+---
+
+## ⭐ Licencia
+
+Libre para uso educativo y personal.
